@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Models\SpaceDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class DetailSpaceController extends Controller
@@ -44,10 +45,12 @@ class DetailSpaceController extends Controller
 
         if ($detailPenyimpanan) {
             // Update data jika lokasi_id sudah ada
+            $currentTime = Carbon::defaultTimezone();
             $detailPenyimpanan->update([
                 'total_space' => $request->input('total_space'),
                 'used_space' => $request->input('used_space'),
                 'free_space' => $request->input('free_space'),
+                'updated_at'=> $currentTime
             ]);
 
             return response()->json([

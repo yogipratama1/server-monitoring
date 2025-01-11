@@ -14,8 +14,9 @@ class SpaceDetail extends Model
         'total_space',
         'used_space',
         'free_space',
+        'updated_at'
     ];
-
+    public $timestamps = true;
     public function lokasi()
     {
         return $this->belongsTo(Location::class, 'lokasi_id');
